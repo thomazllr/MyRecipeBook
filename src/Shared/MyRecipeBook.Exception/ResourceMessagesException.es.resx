@@ -129,4 +129,10 @@
   <data name="VALIDATION_PASSWORD_REQUIRED" xml:space="preserve">
     <value>¡Ups! La contraseña es obligatoria.</value>
   </data>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Internal Server Error.</value>
+  </data>
+  <data name="VALIDATION_EMAIL_ALREADY_EXISTS" xml:space="preserve">
+    <value> El correo electrónico está en uso.</value>
+  </data>
 </root>
