@@ -61,6 +61,15 @@ namespace MyRecipeBook.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password needs to have a minimum of 8 characters..
+        /// </summary>
+        public static string INVALID_PASSWORD_LENGHT {
+            get {
+                return ResourceManager.GetString("INVALID_PASSWORD_LENGHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal Server Error..
         /// </summary>
         public static string UNKNOWN_ERROR {
@@ -70,7 +79,7 @@ namespace MyRecipeBook.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Email is already in use..
+        ///   Looks up a localized string similar to This email is already in use..
         /// </summary>
         public static string VALIDATION_EMAIL_ALREADY_EXISTS {
             get {
