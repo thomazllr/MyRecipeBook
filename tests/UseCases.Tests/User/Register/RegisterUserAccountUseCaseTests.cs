@@ -21,7 +21,7 @@ public class RegisterUserAccountUseCaseTests
 
     private RegisterUserAccountUseCase CreateUseCase()
     {
-        var unitOfWork = IUnityOfWorkBuilder.Build();
+        var unitOfWork = IUnitOfWorkBuilder.Build();
         var userWriteOnlyRepository = IUserWriteOnlyRepositoryBuilder.Build();
         var userReadOnlyRepository = new IUserReadOnlyRepositoryBuilder().Build();
         var passwordHasher = new IPasswordHasherBuilder().Build();

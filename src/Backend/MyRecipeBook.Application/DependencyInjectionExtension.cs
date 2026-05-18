@@ -3,7 +3,7 @@ using MyRecipeBook.Application.UseCases.User.Register;
 
 namespace MyRecipeBook.Application;
 
-public static class DependecyInjectionExtension
+public static class DependencyInjectionExtension
 {
     extension(IServiceCollection services)
     {

@@ -2,11 +2,11 @@
 
 namespace MyRecipeBook.Infrastructure.DataAccess;
 
-internal class UnityOfWork : IUnityOfWork
+internal class UnitOfWork : IUnitOfWork
 {
     private readonly MyRecipeBookDbContext _dbContext;
 
-    public UnityOfWork(MyRecipeBookDbContext dbContext)
+    public UnitOfWork(MyRecipeBookDbContext dbContext)
     {
         _dbContext = dbContext;
     }

@@ -135,8 +135,7 @@
   <data name="VALIDATION_EMAIL_ALREADY_EXISTS" xml:space="preserve">
     <value>O Email já está em uso.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="INVALID_PASSWORD_LENGHT" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="INVALID_PASSWORD_LENGHT" xml:space="preserve">
+    <value>A senha precisa ter no minimo 8 caracteres</value>
   </data>
 </root>

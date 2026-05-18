@@ -3,12 +3,11 @@ using MyRecipeBook.Domain.Repositories;
 
 namespace CommonTestsUtilities.Repositories;
 
-public class IUnityOfWorkBuilder
+public class IUnitOfWorkBuilder
 {
-
-    public static IUnityOfWork Build()
+    public static IUnitOfWork Build()
     {
-        var moq = new Mock<IUnityOfWork>();
+        var moq = new Mock<IUnitOfWork>();
 
         return moq.Object;
     }
