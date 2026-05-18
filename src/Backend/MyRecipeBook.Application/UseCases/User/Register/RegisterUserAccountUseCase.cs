@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using Mapster;
+﻿using Mapster;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Communication.Responses;
 using MyRecipeBook.Domain.Repositories;
@@ -15,18 +14,18 @@ public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
-    private readonly IUnityOfWork _unityOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
     public RegisterUserAccountUseCase(
         IPasswordHasher passwordHasher,
         IUserWriteOnlyRepository userWriteOnlyRepository,
         IUserReadOnlyRepository userReadOnlyRepository,
-        IUnityOfWork unityOfWork)
+        IUnitOfWork unitOfWork)
     {
         _passwordHasher = passwordHasher;
         _userWriteOnlyRepository = userWriteOnlyRepository;
         _userReadOnlyRepository = userReadOnlyRepository;
-        _unityOfWork = unityOfWork;
+        _unitOfWork = unitOfWork;
 
     }
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserAccountJson request)
@@ -39,7 +38,7 @@ public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
 
         await _userWriteOnlyRepository.Add(user);
 
-        await _unityOfWork.Commit();
+        await _unitOfWork.Commit();
 
         return new ResponseRegisteredUserJson
         {
@@ -54,17 +53,18 @@ public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
 
         var result = validator.Validate(request);
 
-        var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
-
-        if (emailExist)
-        {
-            result.Errors.Add(new ValidationFailure(string.Empty, ResourceMessagesException.VALIDATION_EMAIL_ALREADY_EXISTS));
-        }
-
-        if (result.IsValid == false)
+        if (result.IsValid is false)
         {
             var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
             throw new ErrorOnValidationException(errorMessages);
         }
+
+        var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
+
+        if (emailExist)
+        {
+            throw new ErrorOnValidationException([ResourceMessagesException.VALIDATION_EMAIL_ALREADY_EXISTS]);
+        }
+
     }
 }

@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace MyRecipeBook.Infrastructure;
 
-public static class DependecyInjectionExtension
+public static class DependencyInjectionExtension
 {
     extension(IServiceCollection services)
     {
@@ -22,7 +22,7 @@ public static class DependecyInjectionExtension
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
 
-            services.AddScoped<IUnityOfWork, UnityOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<MyRecipeBookDbContext>(config =>
             {
@@ -38,7 +38,7 @@ public static class DependecyInjectionExtension
                 .AddMySql5()
                 .WithGlobalConnectionString(connectionString)
                 .ScanIn(Assembly.Load("MyRecipeBook.Infrastructure"))
-                .For.All(); 
+                .For.All();
             });
         }
     }
