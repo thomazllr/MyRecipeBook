@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using FluentValidation.Results;
+using Mapster;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Communication.Responses;
 using MyRecipeBook.Domain.Repositories;
@@ -53,17 +54,15 @@ public class RegisterUserAccountUseCase : IRegisterUserAccountUseCase
 
         var result = validator.Validate(request);
 
+        var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
+
+        if (emailExist)
+            result.Errors.Add(new ValidationFailure(string.Empty, ResourceMessagesException.VALIDATION_EMAIL_ALREADY_EXISTS));
+
         if (result.IsValid is false)
         {
             var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
             throw new ErrorOnValidationException(errorMessages);
-        }
-
-        var emailExist = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
-
-        if (emailExist)
-        {
-            throw new ErrorOnValidationException([ResourceMessagesException.VALIDATION_EMAIL_ALREADY_EXISTS]);
         }
 
     }
