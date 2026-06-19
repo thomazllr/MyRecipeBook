@@ -2,7 +2,11 @@
 using CommonTestsUtilities.Requests;
 using CommonTestsUtilities.Security;
 using MyRecipeBook.Application.UseCases.User.Register;
+using MyRecipeBook.Domain.Extensions;
+using MyRecipeBook.Exception;
+using MyRecipeBook.Exception.ExceptionsBase;
 using Shouldly;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UseCases.Tests.User.Register;
 
@@ -20,19 +24,61 @@ public class RegisterUserAccountUseCaseTests
 
         result.ShouldNotBeNull();
         result.Tokens.ShouldNotBeNull();
-        result.Name.ShouldBe(result.Name);
+        result.Name.ShouldBe(result.Name);  
         result.Tokens.AccessToken.ShouldBeNullOrEmpty();
         result.Tokens.RefreshToken.ShouldBeNullOrEmpty();
     }
 
+    [Fact]
+    public async Task Validate_ShouldThrowException_WhenNameIsEmpty()
+    {
+        var request = RequestRegisterUserAccountJsonBuilder.Build();
+        request.Name = string.Empty;
 
-    private RegisterUserAccountUseCase CreateUseCase()
+        var useCase = CreateUseCase();
+
+        var exception = await useCase.Execute(request).ShouldThrowAsync<ErrorOnValidationException>();
+        exception.GetErrorMessages().ShouldSatisfyAllConditions(errorMessages =>
+        {
+            errorMessages.Count.ShouldBe(1);
+            errorMessages.ShouldContain(ResourceMessagesException.VALIDATION_NAME_REQUIRED);
+
+        });
+
+    }
+
+    [Fact]
+    public async Task Validate_ShouldThrowException_WhenEmailAlreadyExists()
+    {
+        var request = RequestRegisterUserAccountJsonBuilder.Build();
+
+        var useCase = CreateUseCase(request.Email);
+
+        var exception = await useCase.Execute(request).ShouldThrowAsync<ErrorOnValidationException>();
+        exception.GetErrorMessages().ShouldSatisfyAllConditions(errorMessages =>
+        {
+            errorMessages.Count.ShouldBe(1);
+            errorMessages.ShouldContain(ResourceMessagesException.VALIDATION_EMAIL_ALREADY_EXISTS);
+
+        });
+
+    }
+
+
+    private RegisterUserAccountUseCase CreateUseCase(string? emailThatAlreadyExist = null)
     {
         var unitOfWork = IUnitOfWorkBuilder.Build();
         var userWriteOnlyRepository = IUserWriteOnlyRepositoryBuilder.Build();
-        var userReadOnlyRepository = new IUserReadOnlyRepositoryBuilder().Build();
         var passwordHasher = new IPasswordHasherBuilder().Build();
 
-        return new RegisterUserAccountUseCase(passwordHasher, userWriteOnlyRepository, userReadOnlyRepository, unitOfWork);
+        var userReadOnlyRepository = new IUserReadOnlyRepositoryBuilder();
+
+        if (emailThatAlreadyExist.IsNotEmpty())
+        {
+            userReadOnlyRepository.ExistActiveUserWithEmail(emailThatAlreadyExist);
+        }
+
+            return new RegisterUserAccountUseCase(passwordHasher, userWriteOnlyRepository, userReadOnlyRepository.Build(), unitOfWork);
     }
+}
 }
