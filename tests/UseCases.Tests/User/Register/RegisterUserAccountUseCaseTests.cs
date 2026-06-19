@@ -6,7 +6,6 @@ using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Exception;
 using MyRecipeBook.Exception.ExceptionsBase;
 using Shouldly;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UseCases.Tests.User.Register;
 
@@ -80,5 +79,4 @@ public class RegisterUserAccountUseCaseTests
 
             return new RegisterUserAccountUseCase(passwordHasher, userWriteOnlyRepository, userReadOnlyRepository.Build(), unitOfWork);
     }
-}
 }
