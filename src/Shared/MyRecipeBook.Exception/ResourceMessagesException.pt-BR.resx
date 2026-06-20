@@ -138,4 +138,7 @@
   <data name="INVALID_PASSWORD_LENGHT" xml:space="preserve">
     <value>A senha precisa ter no minimo 8 caracteres</value>
   </data>
+  <data name="VALIDATION_LOGIN_INVALID" xml:space="preserve">
+    <value>Senha ou Email estão inválidos</value>
+  </data>
 </root>
