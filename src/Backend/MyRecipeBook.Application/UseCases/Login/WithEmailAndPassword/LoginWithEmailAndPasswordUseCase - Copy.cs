@@ -32,7 +32,7 @@ public class LoginWithEmailAndPasswordUseCase : ILoginWithEmailAndPasswordUseCas
 
         var isPasswordValid = _passwordHasher.VerifyPassword(request.Password, user.Password);
 
-        if (isPasswordValid is false)
+        if (isPasswordValid == false)
             throw new InvalidLoginException();
 
         return new ResponseRegisteredUserJson
