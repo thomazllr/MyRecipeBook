@@ -6,7 +6,7 @@ namespace CommonTestsUtilities.Entities;
 
 public class UserBuilder
 {
-    public static (User user , string password) Build()
+    public static (User user, string password) Build()
     {
         var (password, passwordHashed) = GenerateRandomPassword();
 
