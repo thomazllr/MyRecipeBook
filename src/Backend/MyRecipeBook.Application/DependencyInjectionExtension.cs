@@ -10,6 +10,11 @@ public static class DependencyInjectionExtension
     {
         public void AddApplication()
         {
+            services.AddUseCases();
+        }
+
+        private void AddUseCases()
+        {
             services.AddScoped<IRegisterUserAccountUseCase, RegisterUserAccountUseCase>();
             services.AddScoped<ILoginWithEmailAndPasswordUseCase, LoginWithEmailAndPasswordUseCase>();
         }
