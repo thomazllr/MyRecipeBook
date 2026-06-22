@@ -135,4 +135,7 @@
   <data name="VALIDATION_EMAIL_ALREADY_EXISTS" xml:space="preserve">
     <value> El correo electrónico está en uso.</value>
   </data>
+  <data name="VALIDATION_RESOURCE_ACCESS_DENIED" xml:space="preserve">
+    <value>No tiene permiso para acceder a este recurso.</value>
+  </data>
 </root>

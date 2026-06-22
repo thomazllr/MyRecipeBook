@@ -3,14 +3,21 @@
 public class ResponseErrorJson
 {
     public List<string> Errors { get; private set; }
+    public bool AccessTokenExpired { get; private set; }
 
-    public ResponseErrorJson(List<string> errosMessages)
+    public ResponseErrorJson(List<string> errorsMessages)
     {
-        Errors = errosMessages;
+        Errors = errorsMessages;
     }
 
-    public ResponseErrorJson(string erroMessage)
+    public ResponseErrorJson(string errorMessage)
     {
-        Errors = [erroMessage];
+        Errors = [errorMessage];
+    }
+
+    public ResponseErrorJson(string errorMessage, bool accessTokenExpired)
+    {
+        Errors = [errorMessage];
+        AccessTokenExpired = accessTokenExpired;
     }
 }

@@ -141,4 +141,10 @@
   <data name="VALIDATION_LOGIN_INVALID" xml:space="preserve">
     <value>Senha ou Email estão inválidos</value>
   </data>
+  <data name="VALIDATION_ACCESS_TOKEN_REQUIRED" xml:space="preserve">
+    <value>Essa requisição precisa de um access token</value>
+  </data>
+  <data name="VALIDATION_RESOURCE_ACCESS_DENIED" xml:space="preserve">
+    <value>Você não tem permissão para acessar este recurso.</value>
+  </data>
 </root>
