@@ -1,11 +1,18 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using MyRecipeBook.Api.Converters;
 using MyRecipeBook.Api.Filters;
 using MyRecipeBook.Application;
+using MyRecipeBook.Domain.Extensions;
+using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Infrastructure;
 using MyRecipeBook.Infrastructure.DataAccess;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +41,49 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(jwtOptions =>
+    {
+        var singinKey = builder.Configuration.GetValue<string>("Jwt:SinginKey")!;
+
+        jwtOptions.TokenValidationParameters = new()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(singinKey)),
+            ValidateLifetime = true,
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ClockSkew = TimeSpan.Zero,
+
+        };
+
+        jwtOptions.Events = new JwtBearerEvents
+        {
+            OnTokenValidated = async context =>
+            {
+                var userId = context.Principal?.FindFirstValue(JwtRegisteredClaimNames.Sub)
+                ?? context.Principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+                if (userId.IsEmpty())
+                {
+                    context.Fail("Invalid subject");
+                    return;
+                }
+
+                var userRepository = context.HttpContext.RequestServices.GetRequiredService<IUserReadOnlyRepository>();
+
+                var exitsUser =  await userRepository.ExistActiveUserWithId(Guid.Parse(userId));
+
+                if (exitsUser == false)
+                {
+                    context.Fail("Invalid subject");
+                }
+            }
+        };  
+
+    });
 
 var app = builder.Build();
 

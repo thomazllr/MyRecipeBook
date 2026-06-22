@@ -2,6 +2,7 @@
 
 public interface IUserReadOnlyRepository
 {
+    Task<bool> ExistActiveUserWithId(Guid id);
     Task<bool> ExistActiveUserWithEmail(string email);
     Task<Entities.User?> GetByEmail(string email);
 }
