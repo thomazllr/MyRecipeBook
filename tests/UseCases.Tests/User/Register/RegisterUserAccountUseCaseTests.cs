@@ -23,7 +23,7 @@ public class RegisterUserAccountUseCaseTests
 
         result.ShouldNotBeNull();
         result.Tokens.ShouldNotBeNull();
-        result.Name.ShouldBe(result.Name);  
+        result.Name.ShouldBe(request.Name);  
         result.Tokens.AccessToken.ShouldNotBeNullOrEmpty();
         result.Tokens.RefreshToken.ShouldBeNullOrEmpty();
     }
