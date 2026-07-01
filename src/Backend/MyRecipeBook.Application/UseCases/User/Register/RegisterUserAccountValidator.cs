@@ -17,9 +17,5 @@ public class RegisterUserAccountValidator : AbstractValidator<RequestRegisterUse
         {
             RuleFor(user => user.Email).EmailAddress().WithMessage(ResourceMessagesException.VALIDATION_EMAIL_INVALID);
         });
-        When(user => user.Password.IsNotEmpty(), () =>
-        {
-            RuleFor(user => user.Password).MinimumLength(8).WithMessage(ResourceMessagesException.INVALID_PASSWORD_LENGHT);
-        });
     }
 }
