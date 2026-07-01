@@ -147,4 +147,10 @@
   <data name="VALIDATION_RESOURCE_ACCESS_DENIED" xml:space="preserve">
     <value>Você não tem permissão para acessar este recurso.</value>
   </data>
+  <data name="VALIDATION_CURRENT_PASSWORD" xml:space="preserve">
+    <value>A senha atual informada está incorreta.</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_MIN_LENGHT" xml:space="preserve">
+    <value>A senha precisa ter um mínimo de 6 caracteres</value>
+  </data>
 </root>
