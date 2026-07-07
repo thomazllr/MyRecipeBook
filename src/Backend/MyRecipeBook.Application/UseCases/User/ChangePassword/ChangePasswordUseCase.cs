@@ -47,7 +47,7 @@ public class ChangePasswordUseCase : IChangePasswordUseCase
 
         if (result.IsValid == false)
         {
-            throw new ErrorOnValidationException(result.Errors.Select(e => e.ErrorMessage).ToList();
+            throw new ErrorOnValidationException(result.Errors.Select(e => e.ErrorMessage).ToList());
         }
     }
-}}
+}
