@@ -153,4 +153,43 @@
   <data name="VALIDATION_PASSWORD_MIN_LENGHT" xml:space="preserve">
     <value>A senha precisa ter um mínimo de 6 caracteres</value>
   </data>
+  <data name="VALIDATION_TITLE_REQUIRED" xml:space="preserve">
+    <value>Ops! O título é obrigatório.</value>
+  </data>
+  <data name="VALIDATION_TITLE_MAX_LENGHT" xml:space="preserve">
+    <value>Ops! O título deve ter no máximo 250 caracteres.</value>
+  </data>
+  <data name="VALIDATION_COOKIE_TIME_INVALID" xml:space="preserve">
+    <value>Ops! O tempo de preparo é inválido.</value>
+  </data>
+  <data name="VALIDATION_DISH_TYPE_INVALID" xml:space="preserve">
+    <value>Ops! O tipo de prato é inválido.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_INGREDIENT" xml:space="preserve">
+    <value>Ops! Adicione ao menos um ingrediente.</value>
+  </data>
+  <data name="VALIDATION_INGREDIENT_EMPTY" xml:space="preserve">
+    <value>Ops! O ingrediente não pode estar vazio.</value>
+  </data>
+  <data name="VALIDATION_INGREDIENT_MAX_LENGHT" xml:space="preserve">
+    <value>Ops! O ingrediente deve ter no máximo 250 caracteres.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_INSTRUCTION" xml:space="preserve">
+    <value>Ops! Adicione ao menos uma instrução.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_DISH_TYPE" xml:space="preserve">
+    <value>Ops! Adicione ao menos um tipo de prato.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_ORDER_INVALID" xml:space="preserve">
+    <value>Ops! A ordem da instrução deve ser maior que 0.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_ORDER_DUPLICATED" xml:space="preserve">
+    <value>Ops! A ordem da instrução não pode se repetir.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_DESCRIPTION_REQUIRED" xml:space="preserve">
+    <value>Ops! A descrição da instrução é obrigatória.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_DESCRIPTION_MAX_LENGHT" xml:space="preserve">
+    <value>Ops! A descrição da instrução deve ter no máximo 2000 caracteres.</value>
+  </data>
 </root>

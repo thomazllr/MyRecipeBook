@@ -153,4 +153,43 @@
   <data name="VALIDATION_PASSWORD_MIN_LENGHT" xml:space="preserve">
     <value>Password must be at least 6 characters long.</value>
   </data>
+  <data name="VALIDATION_TITLE_REQUIRED" xml:space="preserve">
+    <value>Oops! Title is required.</value>
+  </data>
+  <data name="VALIDATION_TITLE_MAX_LENGHT" xml:space="preserve">
+    <value>Oops! Title must be at most 250 characters.</value>
+  </data>
+  <data name="VALIDATION_COOKIE_TIME_INVALID" xml:space="preserve">
+    <value>Oops! Invalid cook time.</value>
+  </data>
+  <data name="VALIDATION_DISH_TYPE_INVALID" xml:space="preserve">
+    <value>Oops! Invalid dish type.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_INGREDIENT" xml:space="preserve">
+    <value>Oops! Add at least one ingredient.</value>
+  </data>
+  <data name="VALIDATION_INGREDIENT_EMPTY" xml:space="preserve">
+    <value>Oops! Ingredient cannot be empty.</value>
+  </data>
+  <data name="VALIDATION_INGREDIENT_MAX_LENGHT" xml:space="preserve">
+    <value>Oops! Ingredient must be at most 250 characters.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_INSTRUCTION" xml:space="preserve">
+    <value>Oops! Add at least one instruction.</value>
+  </data>
+  <data name="VALIDATION_AT_LEAST_ONE_DISH_TYPE" xml:space="preserve">
+    <value>Oops! Add at least one dish type.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_ORDER_INVALID" xml:space="preserve">
+    <value>Oops! Instruction order must be greater than 0.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_ORDER_DUPLICATED" xml:space="preserve">
+    <value>Oops! Instruction order cannot be duplicated.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_DESCRIPTION_REQUIRED" xml:space="preserve">
+    <value>Oops! Instruction description is required.</value>
+  </data>
+  <data name="VALIDATION_INSTRUCTION_DESCRIPTION_MAX_LENGHT" xml:space="preserve">
+    <value>Oops! Instruction description must be at most 2000 characters.</value>
+  </data>
 </root>
