@@ -16,9 +16,13 @@ internal class MyRecipeBookDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<RecipeDisheType>().ToTable("RecipeDisheTypes");
         modelBuilder.Entity<RecipeIngredient>().ToTable("RecipeIngredients");
         modelBuilder.Entity<RecipeInstruction>().ToTable("RecipeInstructions");
+
+        modelBuilder.Entity<RecipeDisheType>().ToTable("RecipeDisheTypes").Property(recipe => recipe.Type).HasConversion<string>();
+
+        modelBuilder.Entity<Recipe>().Property(recipe => recipe.CookTime).HasConversion<string>();
+
 
     }
 }
