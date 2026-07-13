@@ -9,6 +9,6 @@ public class Recipe : BaseEntity
     public ICollection<RecipeInstruction> Instructions { get; set; } = [];
     public ICollection<RecipeDisheType> DisheTypes{ get; set; } = [];
     public CookTime CookTime { get; set; }
-    public Guid UserId { get; private set; }
+    public Guid UserId { get; set; }
 
 }
