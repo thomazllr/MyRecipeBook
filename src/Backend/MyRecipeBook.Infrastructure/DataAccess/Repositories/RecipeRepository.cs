@@ -12,8 +12,6 @@ internal sealed class RecipeRepository : IRecipeWriteOnlyRepository
         _dbContext = dbContext;
     }
 
-    public async Task Add(Recipe recipe)
-    {
-        await _dbContext.Recipes.AddAsync(recipe);
-    }
+    public async Task Add(Recipe recipe) => await _dbContext.Recipes.AddAsync(recipe);
+
 }
