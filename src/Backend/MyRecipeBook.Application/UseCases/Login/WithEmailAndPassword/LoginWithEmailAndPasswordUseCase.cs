@@ -14,7 +14,6 @@ public class LoginWithEmailAndPasswordUseCase : ILoginWithEmailAndPasswordUseCas
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IAccessTokenGenerator _accessTokenGenerator;
 
-
     public LoginWithEmailAndPasswordUseCase(
         IPasswordHasher passwordHasher,
         IUserReadOnlyRepository userReadOnlyRepository,
