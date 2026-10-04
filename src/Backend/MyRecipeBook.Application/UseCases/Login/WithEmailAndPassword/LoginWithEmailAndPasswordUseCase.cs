@@ -9,7 +9,6 @@ namespace MyRecipeBook.Application.UseCases.Login.WithEmailAndPassword;
 
 public class LoginWithEmailAndPasswordUseCase : ILoginWithEmailAndPasswordUseCase
 {
-
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IAccessTokenGenerator _accessTokenGenerator;
@@ -44,6 +43,6 @@ public class LoginWithEmailAndPasswordUseCase : ILoginWithEmailAndPasswordUseCas
             {
                 AccessToken = _accessTokenGenerator.Generate(user)
             }
-        }; 
+        };
     }
 }
